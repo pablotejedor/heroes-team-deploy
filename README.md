@@ -2,10 +2,6 @@
 
 App creada como parte del challenge de ingreso para Alkemy.
 
-
-# Información importante para quien corrija el challenge:
-Para usar esta app, es absolutamente necesario entrar a [este link](https://cors-anywhere.herokuapp.com/) y hacer click en el único botón de la página. Esto es debido a que la api que me solicitaron que use no devuelve los headers necesarios para que te permita hacer las request. Al hacer click en el botón, cors-anywhere actúa de 'intermediario' entre el usuario y la api y le solicita los headers necesarios.
-
 ## Sobre la inconsistencia de la falta de datos
 Aquellos héroes cuyos powerstats y características físicas (altura y peso) sean null, serán considerados como cero para el acumulado de powerstats y promedio de altura-peso del equipo, respectivamente.
 Inicialmente consideré la opción de no permitir que te deje agregar héroes sin datos completos al equipo, pero al final decidí hacerlo de ésta forma.
