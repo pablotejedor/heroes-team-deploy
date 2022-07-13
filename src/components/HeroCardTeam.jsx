@@ -1,24 +1,33 @@
-import React from 'react';
-import ReactTooltip from 'react-tooltip';
+import React from "react";
+import ReactTooltip from "react-tooltip";
 export const HeroCardTeam = ({ hero, heroTeam, setHeroTeam }) => {
   const colors = {
-    good: '#236494',
-    bad: '#b61617',
+    good: "#236494",
+    bad: "#b61617",
   };
   const backgroundImage = {
     backgroundColor: `${colors[hero.biography.alignment]}`,
-    width: '14rem'
+    width: "14rem",
+    height: '380px'
   };
 
   const deleteHero = () => {
-    const filteredList = heroTeam.filter(element => element.id !== hero.id);
+    const filteredList = heroTeam.filter((element) => element.id !== hero.id);
     setHeroTeam(filteredList);
   };
-  
+
   return (
-    <div className="my-3 mx-4 text-center rounded border" style={backgroundImage}>
-      <img className="card-img-top" src={hero.image.url} alt={hero.id} />
-      <div className="card-body">
+    <div
+      className="my-3 mx-4 text-center rounded border"
+      style={backgroundImage}
+    >
+      <img
+        className=""
+        style={{ width: "100%", height: "50%" }}
+        src={hero.image.url}
+        alt={hero.id}
+      />
+      <div className="card-body p-2">
         <h5 className="card-title">{hero.name}</h5>
         <div className="d-flex flex-column space-between">
           <button
@@ -36,17 +45,17 @@ export const HeroCardTeam = ({ hero, heroTeam, setHeroTeam }) => {
             type="success"
             effect="solid"
           >
-            Combat: {parseInt(hero.powerstats.combat) || '-'}
+            Combat: {parseInt(hero.powerstats.combat) || "-"}
             <br />
-            Durability: {parseInt(hero.powerstats.durability) || '-'}
+            Durability: {parseInt(hero.powerstats.durability) || "-"}
             <br />
-            Intelligence: {parseInt(hero.powerstats.intelligence) || '-'}
+            Intelligence: {parseInt(hero.powerstats.intelligence) || "-"}
             <br />
-            Power: {parseInt(hero.powerstats.power) || '-'}
+            Power: {parseInt(hero.powerstats.power) || "-"}
             <br />
-            Speed: {parseInt(hero.powerstats.speed) || '-'}
+            Speed: {parseInt(hero.powerstats.speed) || "-"}
             <br />
-            Strength: {parseInt(hero.powerstats.strength) || '-'}
+            Strength: {parseInt(hero.powerstats.strength) || "-"}
           </ReactTooltip>
           <button
             type="button"
@@ -63,13 +72,13 @@ export const HeroCardTeam = ({ hero, heroTeam, setHeroTeam }) => {
             <br />
             Height: {hero.appearance.height[1]}
             <br />
-            Name: {hero.biography['full-name']}
+            Name: {hero.biography["full-name"]}
             <br />
-            Aliases: {hero.biography.aliases.map(alias => alias).join(', ')}
+            Aliases: {hero.biography.aliases.map((alias) => alias).join(", ")}
             <br />
-            Eye color: {hero.appearance['eye-color']}
+            Eye color: {hero.appearance["eye-color"]}
             <br />
-            Hair color: {hero.appearance['hair-color']}
+            Hair color: {hero.appearance["hair-color"]}
             <br />
             Place of work: {hero.work.base}
           </ReactTooltip>
