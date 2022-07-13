@@ -3,7 +3,7 @@ import React from 'react';
 import { AppRouter } from './components/Routers/AppRouter';
 function App() {
   return (
-    <div className="container">
+    <div className="">
       <AppRouter />
     </div>
   );

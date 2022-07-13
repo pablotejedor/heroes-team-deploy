@@ -21,7 +21,7 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
     }
   };
   return (
-    <div className="m-5">
+    <div className="mx-2 my-5">
       <div>
         <div className="row">
           <div>
@@ -42,7 +42,7 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
             >
               {({ errors, isValid, touched }) => (
                 <Form>
-                  <div className="d-flex m-3 align-items-center">
+                  <div className="d-flex align-items-center">
                     <Field
                       type="search"
                       className="form-control m-1"
