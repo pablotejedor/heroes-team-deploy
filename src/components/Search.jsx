@@ -1,25 +1,50 @@
-import React, { useState } from "react";
-import { Formik, Field, Form } from "formik";
+import React, { useRef, useState } from "react";
+import { Formik, Form } from "formik";
 import axios from "axios";
 import { HeroCard } from "./HeroCard";
 
 export const Search = ({ heroTeam, setHeroTeam }) => {
   const [serverError, setServerError] = useState(null);
   const [search, setSearch] = useState([]);
-  const handleSubmit = async (value) => {
-    try {
-      const response = await axios({
-        method: "GET",
-        url: `https://superheroapi.com/api.php/380601706991561/search/${value.search}`,
-        data: {
-          search: value.search,
-        },
-      });
-      setSearch(response.data.results);
-    } catch (error) {
-      setServerError("No such hero with that name");
+
+  const debounceRef = useRef(null);
+
+  const onQueryChange = (e) => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
     }
+
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `https://superheroapi.com/api.php/380601706991561/search/${e.target.value}`,
+          // data: {
+          //   search: e.target.value,
+          // },
+        });
+        setSearch(response.data.results);
+      } catch (error) {
+        setServerError("No such hero with that name");
+      }
+    }, 300);
   };
+
+  // const handleSubmit = async (value) => {
+  //   try {
+  //     const response = await axios({
+  //       method: "GET",
+  //       url: `https://superheroapi.com/api.php/380601706991561/search/${value.search}`,
+  //       data: {
+  //         search: value.search,
+  //       },
+  //     });
+  //     setSearch(response.data.results);
+  //   } catch (error) {
+  //     setServerError("No such hero with that name");
+  //   }
+  // };
+
   return (
     <div className="mx-2 my-5">
       <div>
@@ -28,7 +53,7 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
             <h4>Search:</h4>
             <hr />
             <Formik
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               validate={(value) => {
                 const errors = {};
                 if (!value.search) {
@@ -43,23 +68,24 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
               {({ errors, isValid, touched }) => (
                 <Form>
                   <div className="d-flex align-items-center">
-                    <Field
+                    <input
                       type="search"
                       className="form-control my-1"
                       name="search"
                       placeholder="Search a hero by name"
                       autoComplete="off"
+                      onChange={onQueryChange}
                     />
                     {errors.search && touched.search ? (
                       <div className="text-danger">{errors.search}</div>
                     ) : null}
-                    <button
+                    {/* <button
                       type="submit"
                       className="btn btn-primary my-1"
                       disabled={!isValid}
                     >
                       Search
-                    </button>
+                    </button> */}
                   </div>
                   {serverError ? (
                     <div className="text-danger">{serverError}</div>
