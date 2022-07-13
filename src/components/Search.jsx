@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Formik, Field, Form } from 'formik';
-import axios from 'axios';
-import { HeroCard } from './HeroCard';
+import React, { useState } from "react";
+import { Formik, Field, Form } from "formik";
+import axios from "axios";
+import { HeroCard } from "./HeroCard";
 
 export const Search = ({ heroTeam, setHeroTeam }) => {
   const [serverError, setServerError] = useState(null);
   const [search, setSearch] = useState([]);
-  const handleSubmit = async value => {
+  const handleSubmit = async (value) => {
     try {
       const response = await axios({
-        method: 'GET',
+        method: "GET",
         url: `https://superheroapi.com/api.php/380601706991561/search/${value.search}`,
         data: {
           search: value.search,
@@ -17,7 +17,7 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
       });
       setSearch(response.data.results);
     } catch (error) {
-      setServerError('No such hero with that name');
+      setServerError("No such hero with that name");
     }
   };
   return (
@@ -29,15 +29,15 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
             <hr />
             <Formik
               onSubmit={handleSubmit}
-              validate={value => {
+              validate={(value) => {
                 const errors = {};
                 if (!value.search) {
-                  errors.search = 'Required';
+                  errors.search = "Required";
                 }
                 return errors;
               }}
               initialValues={{
-                search: '',
+                search: "",
               }}
             >
               {({ errors, isValid, touched }) => (
@@ -45,7 +45,7 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
                   <div className="d-flex align-items-center">
                     <Field
                       type="search"
-                      className="form-control m-1"
+                      className="form-control my-1"
                       name="search"
                       placeholder="Search a hero by name"
                       autoComplete="off"
@@ -55,7 +55,7 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
                     ) : null}
                     <button
                       type="submit"
-                      className="btn btn-primary m-1"
+                      className="btn btn-primary my-1"
                       disabled={!isValid}
                     >
                       Search
@@ -67,9 +67,12 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
                 </Form>
               )}
             </Formik>
-            <div className="d-flex justify-content-center flex-wrap m-3" style={{maxWidth: '53vw'}}>
+            <div
+              className="d-flex justify-content-center flex-wrap m-3"
+              style={{ maxWidth: "53vw" }}
+            >
               {search ? (
-                search.map(hero => (
+                search.map((hero) => (
                   <HeroCard
                     className="card m-3"
                     key={hero.id}
