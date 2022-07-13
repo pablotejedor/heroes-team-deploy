@@ -16,7 +16,7 @@ export const HeroCardTeam = ({ hero, heroTeam, setHeroTeam }) => {
   };
   
   return (
-    <div className="m-3 text-center rounded border" style={backgroundImage}>
+    <div className="my-3 mx-4 text-center rounded border" style={backgroundImage}>
       <img className="card-img-top" src={hero.image.url} alt={hero.id} />
       <div className="card-body">
         <h5 className="card-title">{hero.name}</h5>

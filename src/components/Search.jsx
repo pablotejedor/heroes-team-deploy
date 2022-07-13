@@ -67,7 +67,7 @@ export const Search = ({ heroTeam, setHeroTeam }) => {
                 </Form>
               )}
             </Formik>
-            <div className="d-flex flex-wrap m-3">
+            <div className="d-flex justify-content-center flex-wrap m-3" style={{maxWidth: '53vw'}}>
               {search ? (
                 search.map(hero => (
                   <HeroCard

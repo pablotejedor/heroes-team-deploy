@@ -9,10 +9,10 @@ export const MyTeam = ({ heroTeam, setHeroTeam }) => {
   let averageWeight = getAverageWeight(heroTeam);
 
   return (
-    <div className="m-2">
+    <div className="m-2" style={{ width: "53vw" }}>
       <h1>My team</h1>
-      <div className="d-flex text-center align-items-center">
-        <div className="m-2 p-2 border rounded">
+      <div className="d-flex text-center align-items-center justify-content-between">
+        <div className=" p-2 border rounded">
           <h4>Overall Stats:</h4>
           <div className="d-flex flex-wrap">
             {overallStats.map((stat) => (
@@ -27,7 +27,7 @@ export const MyTeam = ({ heroTeam, setHeroTeam }) => {
           </div>
         </div>
 
-        <div className="m-2 p-2 border rounded">
+        <div className="p-2 border rounded">
           <div className="d-flex flex-column">
             <h5 className="m-1 p-1 border rounded bg-secondary">
               Avg Height: {averageHeight || "---"} cm
@@ -40,14 +40,14 @@ export const MyTeam = ({ heroTeam, setHeroTeam }) => {
       </div>
 
       {!heroTeam.length ? (
-        <p className="text-danger">
+        <p className="text-danger mt-5">
           Your team will be shown here. At this moment, your team does not
           contain any hero. Please use the search feature to get you a hero for
           your team.
         </p>
       ) : null}
 
-      <div className="d-flex flex-wrap">
+      <div className="d-flex justify-content-center flex-wrap">
         {heroTeam.map((hero) => (
           <HeroCardTeam
             hero={hero}
